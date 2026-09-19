@@ -1,0 +1,31 @@
+# dependencias
+node_modules/
+
+# Xcode / iOS
+ios/build/
+ios/Pods/
+*.xcworkspace
+*.xcuserstate
+
+# Android
+android/app/build/
+android/build/
+android/.gradle/
+*.keystore
+!debug.keystore
+
+# React Native / Metro
+.metro-health-check*
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# macOS
+.DS_Store
+
+# Buildtime generado
+*.jsbundle
+
+# Variables de entorno
+.env
