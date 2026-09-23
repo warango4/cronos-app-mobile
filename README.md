@@ -14,6 +14,34 @@ Aplicación móvil (React Native, solo Android) para gestión de horarios/alarma
 npm install
 ```
 
+## Configurar el Android SDK
+
+Gradle necesita saber dónde está el Android SDK (se instala con Android Studio; la ruta aparece en *Settings > Languages & Frameworks > Android SDK*). Sin esto el build falla con `SDK location not found`, aunque `JAVA_HOME` esté bien configurado. Definir `ANDROID_HOME` y agregar `platform-tools` al `PATH` (ahí está `adb`, que también usa la CLI de React Native).
+
+**Windows (PowerShell), una sola vez:**
+
+```powershell
+[Environment]::SetEnvironmentVariable("ANDROID_HOME", "$env:LOCALAPPDATA\Android\Sdk", "User")
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path","User") + ";$env:LOCALAPPDATA\Android\Sdk\platform-tools", "User")
+```
+
+**macOS (zsh):**
+
+```bash
+echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.zshrc
+echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Alternativa sin variables de entorno: crear `android/local.properties` (ya está en `.gitignore`) con la ruta del SDK:
+
+```properties
+# Windows
+sdk.dir=C:/Users/<usuario>/AppData/Local/Android/Sdk
+# macOS
+sdk.dir=/Users/<usuario>/Library/Android/sdk
+```
+
 ## Ejecutar en desarrollo
 
 ```bash
