@@ -11,6 +11,11 @@ ios/Pods/
 android/app/build/
 android/build/
 android/.gradle/
+android/app/.cxx/
+android/.kotlin/
+android/local.properties
+android/.idea/
+android/*.iml
 *.keystore
 !debug.keystore
 
