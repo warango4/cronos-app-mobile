@@ -14,6 +14,23 @@ Aplicación móvil (React Native, solo Android) para gestión de horarios/alarma
 npm install
 ```
 
+## Configurar Java (JAVA_HOME)
+
+Gradle necesita un JDK 21 y lo busca en `JAVA_HOME`. Si no esta definido se puede usar el JDK que trae Android Studio (JBR).
+
+**Windows (PowerShell), una sola vez:**
+
+```powershell
+[Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Android\Android Studio\jbr", "User")
+```
+
+**macOS (zsh):**
+
+```bash
+echo 'export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"' >> ~/.zshrc
+source ~/.zshrc
+```
+
 ## Configurar el Android SDK
 
 Gradle necesita saber dónde está el Android SDK (se instala con Android Studio; la ruta aparece en *Settings > Languages & Frameworks > Android SDK*). Sin esto el build falla con `SDK location not found`, aunque `JAVA_HOME` esté bien configurado. Definir `ANDROID_HOME` y agregar `platform-tools` al `PATH` (ahí está `adb`, que también usa la CLI de React Native).
@@ -26,7 +43,7 @@ Gradle necesita saber dónde está el Android SDK (se instala con Android Studio
 ```
 
 **macOS (zsh):**
-
++
 ```bash
 echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.zshrc
 echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.zshrc
@@ -40,6 +57,23 @@ Alternativa sin variables de entorno: crear `android/local.properties` (ya está
 sdk.dir=C:/Users/<usuario>/AppData/Local/Android/Sdk
 # macOS
 sdk.dir=/Users/<usuario>/Library/Android/sdk
+```
+
+## Verificar la configuración
+
+
+```powershell
+# Windows (PowerShell)
+& "$env:JAVA_HOME\bin\java" -version   # debe indicar la versión 21
+echo $env:ANDROID_HOME                 # debe imprimir la ruta del SDK
+adb --version
+```
+
+```bash
+# macOS
+"$JAVA_HOME/bin/java" -version         # debe indicar la versión 21
+echo $ANDROID_HOME                     # debe imprimir la ruta del SDK
+adb --version
 ```
 
 ## Ejecutar en desarrollo
