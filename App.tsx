@@ -1,24 +1,23 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
+import {PaperProvider} from 'react-native-paper';
+import AppNavigator from './src/navigation/AppNavigator';
+import {theme} from './src/styles/theme';
+import {AlarmsProvider} from './src/state/AlarmsContext';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Cronos App</Text>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <PaperProvider theme={theme}>
+        <AlarmsProvider>
+          <NavigationContainer>
+            <AppNavigator />
+          </NavigationContainer>
+        </AlarmsProvider>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-});
 
 export default App;
